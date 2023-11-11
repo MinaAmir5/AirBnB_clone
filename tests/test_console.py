@@ -1,66 +1,144 @@
 #!/usr/bin/python3
-"""
-Unit tests for console using Mock module from python standard library
-Checks console for capturing stdout into a StringIO object
-"""
+''' Test suite for the console'''
 
-import os
+
 import sys
+import models
 import unittest
-from unittest.mock import create_autospec, patch
 from io import StringIO
 from console import HBNBCommand
-from models import storage
-from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
+from unittest.mock import create_autospec
 
 
-class TestConsole(unittest.TestCase):
-    """
-    Unittest for the console model
-    """
-
+class test_console(unittest.TestCase):
+    ''' Test the console module'''
     def setUp(self):
-        """Redirecting stdin and stdout"""
-        self.mock_stdin = create_autospec(sys.stdin)
-        self.mock_stdout = create_autospec(sys.stdout)
-        self.err = ["** class name missing **",
-                    "** class doesn't exist **",
-                    "** instance id missing **",
-                    "** no instance found **",
-                    ]
+        '''setup for'''
+        self.backup = sys.stdout
+        self.capt_out = StringIO()
+        sys.stdout = self.capt_out
 
-        self.cls = ["BaseModel",
-                    "User",
-                    "State",
-                    "City",
-                    "Place",
-                    "Amenity",
-                    "Review"]
+    def tearDown(self):
+        ''''''
+        sys.stdout = self.backup
 
-    def create(self, server=None):
-        """
-        Redirects stdin and stdout to the mock module
-        """
-        return HBNBCommand(stdin=self.mock_stdin, stdout=self.mock_stdout)
-
-    def last_write(self, nr=None):
-        """Returns last n output lines"""
-        if nr is None:
-            return self.mock_stdout.write.call_args[0][0]
-        return "".join(map(lambda c: c[0][0],
-                           self.mock_stdout.write.call_args_list[-nr:]))
+    def create(self):
+        ''' create an instance of the HBNBCommand class'''
+        return HBNBCommand()
 
     def test_quit(self):
-        """Quit command"""
-        cli = self.create()
-        self.assertTrue(cli.onecmd("quit"))
+        ''' Test quit exists'''
+        console = self.create()
+        self.assertTrue(console.onecmd("quit"))
 
+    def test_EOF(self):
+        ''' Test EOF exists'''
+        console = self.create()
+        self.assertTrue(console.onecmd("EOF"))
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_all(self):
+        ''' Test all exists'''
+        console = self.create()
+        console.onecmd("all")
+        self.assertTrue(isinstance(self.capt_out.getvalue(), str))
+
+    def test_show(self):
+        '''
+            Testing that show exists
+        '''
+        console = self.create()
+        console.onecmd("create User")
+        user_id = self.capt_out.getvalue()
+        sys.stdout = self.backup
+        self.capt_out.close()
+        self.capt_out = StringIO()
+        sys.stdout = self.capt_out
+        console.onecmd("show User " + user_id)
+        x = (self.capt_out.getvalue())
+        sys.stdout = self.backup
+        self.assertTrue(str is type(x))
+
+    def test_show_class_name(self):
+        '''
+            Testing the error messages for class name missing.
+        '''
+        console = self.create()
+        console.onecmd("create User")
+        user_id = self.capt_out.getvalue()
+        sys.stdout = self.backup
+        self.capt_out.close()
+        self.capt_out = StringIO()
+        sys.stdout = self.capt_out
+        console.onecmd("show")
+        x = (self.capt_out.getvalue())
+        sys.stdout = self.backup
+        self.assertEqual("** class name missing **\n", x)
+
+    def test_show_class_name(self):
+        '''
+            Test show message error for id missing
+        '''
+        console = self.create()
+        console.onecmd("create User")
+        user_id = self.capt_out.getvalue()
+        sys.stdout = self.backup
+        self.capt_out.close()
+        self.capt_out = StringIO()
+        sys.stdout = self.capt_out
+        console.onecmd("show User")
+        x = (self.capt_out.getvalue())
+        sys.stdout = self.backup
+        self.assertEqual("** instance id missing **\n", x)
+
+    def test_show_no_instance_found(self):
+        '''
+            Test show message error for id missing
+        '''
+        console = self.create()
+        console.onecmd("create User")
+        user_id = self.capt_out.getvalue()
+        sys.stdout = self.backup
+        self.capt_out.close()
+        self.capt_out = StringIO()
+        sys.stdout = self.capt_out
+        console.onecmd("show User " + "124356876")
+        x = (self.capt_out.getvalue())
+        sys.stdout = self.backup
+        self.assertEqual("** no instance found **\n", x)
+
+    def test_create(self):
+        '''
+            Test that create works
+        '''
+        console = self.create()
+        console.onecmd("create User")
+        self.assertTrue(isinstance(self.capt_out.getvalue(), str))
+
+    def test_class_name(self):
+        '''
+            Testing the error messages for class name missing.
+        '''
+        console = self.create()
+        console.onecmd("create")
+        x = (self.capt_out.getvalue())
+        self.assertEqual("** class name missing **\n", x)
+
+    def test_class_name_doest_exist(self):
+        '''
+            Testing the error messages for class name missing.
+        '''
+        console = self.create()
+        console.onecmd("create Binita")
+        x = (self.capt_out.getvalue())
+        self.assertEqual("** class doesn't exist **\n", x)
+
+    '''
+    def test_destroy(self):
+        console = self.create()
+        self.assertTrue(console.onecmd("destroy"))
+
+    def test_update(self):
+        console = self.create()
+        self.assertTrue(console.onecmd("update"))
+
+    '''
