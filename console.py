@@ -141,8 +141,8 @@ class HBNBCommand(cmd.Cmd):
                     elif len(args) == 3:
                         print("** value missing **")
                     else:
-                        setattr(objc, args[2], args[3])
                         storage.save()
+                        setattr(objc, args[2], args[3])
                     return
             print("** no instance found **")
 
