@@ -114,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_update(self, arg):
-        """ Updates an instance based on the class name and id """
+        """ Upates an instance bsed on the class nae and id """
 
         if not arg:
             print("** class name missing **")
@@ -133,8 +133,8 @@ class HBNBCommand(cmd.Cmd):
         else:
             all_objs = storage.all()
             for key, objc in all_objs.items():
-                ob_name = objc.__class__.__name__
                 ob_id = objc.id
+                ob_name = objc.__class__.__name__
                 if ob_name == args[0] and ob_id == args[1].strip('"'):
                     if len(args) == 2:
                         print("** attribute name missing **")
