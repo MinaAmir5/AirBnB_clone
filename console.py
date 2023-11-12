@@ -85,8 +85,8 @@ class HBNBCommand(cmd.Cmd):
                    'City': City, 'Amenity': Amenity, 'State': State,
                    'Review': Review}
             my_model = dct[type_model]()
-            print(my_model.id)
             my_model.save()
+            print(my_model.id)
 
     def do_destroy(self, arg):
         """ Deltes an instace passed """
