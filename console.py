@@ -18,6 +18,7 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
     l_c = ['create', 'show', 'update', 'all', 'destroy', 'count']
+
     l_classes = ['BaseModel', 'User', 'Amenity',
                  'Place', 'City', 'State', 'Review']
 
