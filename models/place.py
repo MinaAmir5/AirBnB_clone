@@ -1,20 +1,20 @@
 #!/usr/bin/python3
 """
-Defines Place class
+User Defined Place class
 """
 from models.base_model import BaseModel
 
 
 class Place(BaseModel):
-    """Defines Place class"""
-    city_id = ""
-    user_id = ""
+    """Defined Place class"""
     name = ""
-    description = ""
-    number_bathrooms = 0
+    user_id = ""
+    city_id = ""
     number_rooms = 0
+    number_bathrooms = 0
     max_guest = 0
     price_by_night = 0
-    latitude = 0.0
     longitude = 0.0
+    latitude = 0.0
     amenity_ids = []
+    description = ""
