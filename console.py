@@ -22,6 +22,10 @@ class HBNBCommand(cmd.Cmd):
 
     l_c = ['create', 'show', 'update', 'all', 'destroy', 'count']
 
+    def help_help(self):
+        """ Prints help command description """
+        print("Provides description of a given command")
+
     def precmd(self, arg):
         """parses command input"""
         if '.' in arg and '(' in arg and ')' in arg:
@@ -31,10 +35,6 @@ class HBNBCommand(cmd.Cmd):
             if cls[0] in HBNBCommand.l_classes and cnd[0] in HBNBCommand.l_c:
                 arg = cnd[0] + ' ' + cls[0] + ' ' + args[0]
         return arg
-
-    def help_help(self):
-        """ Prints help command description """
-        print("Provides description of a given command")
 
     def emptyline(self):
         """do nothing when empty line"""
