@@ -17,19 +17,19 @@ class HBNBCommand(cmd.Cmd):
     """Command processor"""
 
     prompt = "(hbnb) "
+    l_c = ['create', 'show', 'update', 'all', 'destroy', 'count']
     l_classes = ['BaseModel', 'User', 'Amenity',
                  'Place', 'City', 'State', 'Review']
 
-    l_c = ['create', 'show', 'update', 'all', 'destroy', 'count']
 
     def help_help(self):
-        """ Prints help command description """
+        """ Prits help command decription """
         print("Provides description of a given command")
 
     def do_count(self, cls_name):
-        """counts number of instances of a class"""
-        count = 0
+        """couts number of instnces of a class"""
         all_objs = storage.all()
+        count = 0
         for k, v in all_objs.items():
             clss = k.split('.')
             if clss[0] == cls_name:
@@ -37,7 +37,7 @@ class HBNBCommand(cmd.Cmd):
         print(count)
 
     def precmd(self, arg):
-        """parses command input"""
+        """parses commnd input"""
         if '.' in arg and '(' in arg and ')' in arg:
             cls = arg.split('.')
             cnd = cls[1].split('(')
@@ -47,7 +47,7 @@ class HBNBCommand(cmd.Cmd):
         return arg
 
     def do_show(self, arg):
-        """ Shows string representation of an instance passed """
+        """ Shows string represetation of an intance passed """
 
         if not arg:
             print("** class name missing **")
@@ -70,11 +70,11 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def emptyline(self):
-        """do nothing when empty line"""
+        """do noting when empty line"""
         pass
 
     def do_create(self, type_model):
-        """ Creates an instance according to a given class """
+        """ Creaes an instance accoding to a given class """
 
         if not type_model:
             print("** class name missing **")
@@ -89,7 +89,7 @@ class HBNBCommand(cmd.Cmd):
             my_model.save()
 
     def do_destroy(self, arg):
-        """ Deletes an instance passed """
+        """ Deltes an instace passed """
 
         if not arg:
             print("** class name missing **")
