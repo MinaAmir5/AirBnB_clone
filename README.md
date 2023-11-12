@@ -1,4 +1,4 @@
-# AirBnB Clone [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/luischaparroc/AirBnB_clone/blob/master/LICENSE) [![Build Status](https://travis-ci.org/luischaparroc/AirBnB_clone.svg?branch=master)](https://travis-ci.org/luischaparroc/AirBnB_clone)
+# AirBnB Clone [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/MinaAmir5/AirBnB_clone/blob/master/LICENSE) [![Build Status](https://travis-ci.org/MinaAmir5/AirBnB_clone.svg?branch=master)](https://travis-ci.org/MinaAmir5/AirBnB_clone)
 ![HBnB Logo](./image/hbnb_logo.png)
 
 
@@ -131,5 +131,5 @@ HBnB - version 9.6
 To all the peers that contribuited with their knowledge
 
 ### Authors :fountain_pen:
-* Luis Chaparro - @luischaparroc
-* Laura Peralta V - @LauraPeraltaV85
+* Mina Amir - @MinaAmir5
+* Abderrahmane Zaguir - @Abderrahmane Zaguir
