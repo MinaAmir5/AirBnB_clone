@@ -22,7 +22,6 @@ class HBNBCommand(cmd.Cmd):
     l_classes = ['BaseModel', 'User', 'Amenity',
                  'Place', 'City', 'State', 'Review']
 
-
     def help_help(self):
         """ Prits help command decription """
         print("Provides description of a given command")
