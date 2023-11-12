@@ -1,14 +1,14 @@
 #!/usr/bin/pyhon3
 """
-Parent class that will inherit
+Parent class that will be inherited
 """
 import uuid
-from datetime import datetime
 from models import storage
+from datetime import datetime
 
 
 class BaseModel:
-    """Defines all common attributes/methods
+    """Defines all common attributes
     """
     def __init__(self, *args, **kwargs):
         """initializes all attributes
