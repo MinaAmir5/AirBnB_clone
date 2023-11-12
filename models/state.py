@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Class that defines a state
+User defined class for state
 """
 from models.base_model import BaseModel
 

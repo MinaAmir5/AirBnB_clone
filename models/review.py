@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """
-Defines review class
+User defined review class
 """
 from models.base_model import BaseModel
 
 
 class Review(BaseModel):
-    """Reviews made by users about a place"""
+    """User reviews for a place"""
     place_id = ""
     user_id = ""
     text = ""
