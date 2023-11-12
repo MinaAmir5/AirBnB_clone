@@ -89,7 +89,7 @@ class HBNBCommand(cmd.Cmd):
             print(my_model.id)
 
     def do_destroy(self, arg):
-        """ Deltes an instace passed """
+        """ Deltes an insace passed """
 
         if not arg:
             print("** class name missing **")
@@ -104,8 +104,8 @@ class HBNBCommand(cmd.Cmd):
         else:
             all_objs = storage.all()
             for key, value in all_objs.items():
-                ob_name = value.__class__.__name__
                 ob_id = value.id
+                ob_name = value.__class__.__name__
                 if ob_name == args[0] and ob_id == args[1].strip('"'):
                     del value
                     del storage._FileStorage__objects[key]
