@@ -174,5 +174,6 @@ class HBNBCommand(cmd.Cmd):
                     list_instances += [value.__str__()]
             print(list_instances)
 
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
