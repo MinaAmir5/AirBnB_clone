@@ -147,15 +147,15 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_quit(self, line):
-        """ Quit command to exit the command interpreter """
+        """ Quit comand to exit the command inerpreter """
         return True
 
     def do_EOF(self, line):
-        """ EOF command to exit the command interpreter """
+        """ EOF commad to exit the command iterpreter """
         return True
 
     def do_all(self, arg):
-        """ Prints string represention of all instances of a given class """
+        """ Prints string epresention of all instnces of a given clss """
 
         if not arg:
             print("** class name missing **")
@@ -166,8 +166,8 @@ class HBNBCommand(cmd.Cmd):
         if args[0] not in HBNBCommand.l_classes:
             print("** class doesn't exist **")
         else:
-            all_objs = storage.all()
             list_instances = []
+            all_objs = storage.all()
             for key, value in all_objs.items():
                 ob_name = value.__class__.__name__
                 if ob_name == args[0]:
