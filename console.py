@@ -26,7 +26,7 @@ class HBNBCommand(cmd.Cmd):
         """ Prints help command description """
         print("Provides description of a given command")
 
-     def do_count(self, cls_name):
+    def do_count(self, cls_name):
         """counts number of instances of a class"""
         count = 0
         all_objs = storage.all()
